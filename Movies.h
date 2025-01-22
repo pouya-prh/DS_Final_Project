@@ -1,5 +1,6 @@
 #pragma once
 #include "Headers.h"
+#include "SplayTree.h"
 class Movie
 {
 public:
@@ -34,6 +35,7 @@ public:
 	vector<Movie>& AdvancedSearch(string& name);
 private:
 
+	 SplayTree splayTree;
 	// CompressedTrie compressedTrie;
 	// vector<Movie> allMovies;
 	// HashTable<vector<Movie>> ganres;

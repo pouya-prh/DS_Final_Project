@@ -33,6 +33,9 @@
     <ClCompile Include="CompressedTrie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SplayTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CompressedTrie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplayTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
