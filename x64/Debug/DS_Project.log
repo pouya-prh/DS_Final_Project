@@ -1,4 +1,10 @@
-﻿  SingUp.cpp
+﻿  CompressedTrie.cpp
+  Menu.cpp
+  mian.cpp
+  Movies.cpp
+  SingUp.cpp
+  User.cpp
+  Generating Code...
   DS_Project.vcxproj -> D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\x64\Debug\DS_Project.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

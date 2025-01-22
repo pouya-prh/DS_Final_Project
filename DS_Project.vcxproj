@@ -127,15 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CompressedTrie.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="mian.cpp" />
+    <ClCompile Include="Movies.cpp" />
     <ClCompile Include="SingUp.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompressedTrie.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Movies.h" />
     <ClInclude Include="SignUp.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

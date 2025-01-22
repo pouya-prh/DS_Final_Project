@@ -1,4 +1,5 @@
 #pragma once
+#include "Movies.h"
 class User
 {
 public:
@@ -10,5 +11,8 @@ public:
 	void FavoritesListManagement();
 	void PrefferdMovies();
 	void Scoring();
+private:
+	// SplayTree splayTree;
+	// vector<Movie> favoriteList;
 };
 
