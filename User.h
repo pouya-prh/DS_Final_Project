@@ -12,7 +12,7 @@ public:
 	void PrefferdMovies();
 	void Scoring();
 private:
-	// SplayTree splayTree;
+	
 	// vector<Movie> favoriteList;
 };
 

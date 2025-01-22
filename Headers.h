@@ -8,7 +8,7 @@ using namespace std;
 #include <fstream>
 #include "json.hpp"
 #include <vector>
-
+#include <queue>
 //for Sing up`s password hash function
 #include <openssl/sha.h>
 #include <iomanip>
