@@ -1,6 +1,6 @@
 #pragma once
 #include "Headers.h"
-
+#include <type_traits>
 
 
 
@@ -15,7 +15,18 @@ private:
    
     int hashFunction(K& key){
       
-        return hash<K>()(key) % numBuckets;
+        if constexpr(is_integral_v<K>)
+        {
+            return key % numBuckets;
+        }
+        else
+        {
+            int hash = 0;
+            for (char ch : key) {
+                hash = hash * 31 + ch; 
+            }
+            return hash % numBuckets;
+        }
     }
 
 public:

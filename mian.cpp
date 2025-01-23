@@ -53,16 +53,28 @@ int main()
     string language2 = "English";
     int year2 = 2014;
     float score2 = 8.7;
+    string name3 = "Parasite";
+    string story3 = "lkvarnkvnrakevelvr";
+    string country3 = "Corea";
+    string ganre3 = "Adventure epic";
+    string language3 = "Corean";
+    int year3 = 2012;
+    float score3 = 8.7;
     Movie m1(name, ganre, story, language, year, country, score);
     Movie m2(name2, ganre2, story2, language2, year2, country2, score2);
-    vector<Movie> usaMovies;
+    Movie m3(name3, ganre3, story3, language3, year3, country3, score3);
+    vector<Movie> usaMovies,oldMovies,coreMovies;
     usaMovies.push_back(m1);
     usaMovies.push_back(m2);
-    HashTable<std::string, std::vector<Movie>> moviesByCountry(10);
+    oldMovies.push_back(m1);
+    coreMovies.push_back(m3);
+    HashTable<string,vector<Movie>> moviesByCountry(10);
+    HashTable<int,vector<Movie>> moviesByDate(10);
     moviesByCountry.insert(country, usaMovies);
-    vector<Movie> result;
-    moviesByCountry.search(country, result);
-    moviesByCountry.display();*/
+    moviesByCountry.insert(country3, coreMovies);
+    moviesByDate.insert(year, oldMovies);
+    moviesByCountry.display();
+    moviesByDate.display();*/
    //----------------------------------------
 
 }
