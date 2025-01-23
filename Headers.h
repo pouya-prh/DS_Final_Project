@@ -9,6 +9,7 @@ using namespace std;
 #include "json.hpp"
 #include <vector>
 #include <queue>
+#include <set>
 //for Sing up`s password hash function
 #include <openssl/sha.h>
 #include <iomanip>

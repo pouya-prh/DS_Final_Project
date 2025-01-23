@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="CompressedTrie.cpp" />
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="CompressedTrie.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Headers.h" />
