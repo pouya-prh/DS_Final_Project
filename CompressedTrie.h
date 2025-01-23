@@ -137,20 +137,3 @@ public:
         }
     }
 };
-
-//int main() {
-//    CompressedTrie root;
-//    std::vector<std::string> words{ "banana", "bananas", "bandanas", "bandana", "band", "apple", "all", "beast" };
-//
-//    root.insert_many(words);
-//
-//    std::cout << "Words: ";
-//    for (const auto& word : words) {
-//        std::cout << word << " ";
-//    }
-//
-//    std::cout << "\nTree:\n";
-//    root.print_tree();
-//
-//    return 0;
-//}
