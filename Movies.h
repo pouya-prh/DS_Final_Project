@@ -22,6 +22,26 @@ private:
 
 };
 
+class Serial
+{
+public:
+	Serial(string& name, string& ganre, string& story, string& language, int& year, string& country, 
+		float episodeTime , int seasonsNum, int episodesNum ,float score = -1);
+
+private:
+	string name;
+	string ganre;
+	string story;
+	string language;
+	string country;
+	int year;
+	int seasonsNum;
+	int episodesNum;
+	float episodeTime;
+	float score;
+
+
+};
 
 class Movies
 {
