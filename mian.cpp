@@ -84,7 +84,40 @@ int main()
     cout << endl << "--------------------" << endl;
     User user;
     user.Filter(movies);*/
-   //------------------------------------------
+
+	//---------------------------------------- Search and Insert and deletion test:
+   /*Movie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
+	Movie m2("Inteption", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
+	Movie m3("Int Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.2);
+	Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
+	Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
+	Menu menu;
+	menu.addMovie(m1);
+	menu.addMovie(m2);
+	menu.addMovie(m3);
+	menu.addMovie(m4);
+	menu.addMovie(m5);
+	const Movie& tmp1 = menu.findMovie("Memento");
+	const Movie& tmp2 = menu.findMovie("Int Dark Knight");
+	const Movie& tmp3 = menu.findMovie("Interstellar");
+	const Movie& tmp4 = menu.findMovie("Memento");
+	const Movie& tmp5 = menu.findMovie("Memento");
+	const Movie& tmp6 = menu.findMovie("Interstellar");
+
+	menu.search(2, "Int");
+	cout << "-------------------------------------------------" << endl;
+	
+	menu.deleteMovie("Interstellar");
+	
+	menu.search(2, "Interslar");
+	cout << "-------------------------------------------------" << endl;
+	
+	menu.deleteMovie("Memento");
+	
+	menu.search(2, "Inters");
+	cout << "-------------------------------------------------" << endl;
+	cout << "suggestion:" << endl;
+	menu.showSuggest();*/
 }
 
 
