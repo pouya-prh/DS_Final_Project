@@ -139,12 +139,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Avl.h" />
     <ClInclude Include="CompressedTrie.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Levenshtein.h" />
+    <ClInclude Include="ListOfInterests.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Movies.h" />
+    <ClInclude Include="Searches.h" />
     <ClInclude Include="SignUp.h" />
     <ClInclude Include="SplayTree.h" />
     <ClInclude Include="User.h" />

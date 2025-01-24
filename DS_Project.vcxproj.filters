@@ -74,5 +74,17 @@
     <ClInclude Include="Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Levenshtein.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListOfInterests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Avl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Searches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
