@@ -39,35 +39,52 @@ int main()
     std::cout << "\nTree:\n";
     root.print_tree();*/
   //--------------------------------------Hash table test:
-    Movie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
+    //Movie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
+    //Movie m2("Inception", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
+    //Movie m3("The Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.0);
+    //Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
+    //Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
+
+    //// Create a hash table to store movies by genre
+    //HashTable<string, Movie> moviesByGenre;
+    //// Insert movies into the hash table
+    //moviesByGenre.insert("Action", m2);
+    //moviesByGenre.insert("Action", m3);
+    //moviesByGenre.insert("Mystery", m1);
+
+    //HashTable <string, HashTable<string, Movie>> table;
+    //table.insert("genre", moviesByGenre);
+    ////// Display movies in the hash table
+    //cout << "Movies before removal:" << endl;
+    //moviesByGenre.display();
+  
+    //moviesByGenre.remove("Action", m2);  // Remove Inception (Action)
+    //
+
+    //// Display movies after removal
+    //cout << "\nMovies after removal:" << endl;
+    //moviesByGenre.display();
+    
+   //----------------------------------------Filter test
+    M/*ovie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
     Movie m2("Inception", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
     Movie m3("The Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.0);
     Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
     Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
+   
+    Movies movies;
+    movies.InsertMovie(m1);
+    movies.InsertMovie(m2);
+    movies.InsertMovie(m3);
+    movies.InsertMovie(m4);
+    movies.InsertMovie(m5);
 
-    // Create a hash table to store movies by genre
-    HashTable<string, Movie> moviesByGenre("Genre", 10);
-    HashTable<string, Movie > movieByCountry("Country", 10);
-    // Insert movies into the hash table
-    moviesByGenre.insert("Action", m2);
-    moviesByGenre.insert("Action", m3);
-    movieByCountry.insert("USA", m5);
-    moviesByGenre.insert("Mystery", m1);
-    movieByCountry.insert("USA", m4);
+    movies.ShowAllMovies();
 
-    // Display movies in the hash table
-    cout << "Movies before removal:" << endl;
-    moviesByGenre.display();
-    movieByCountry.display();
-    moviesByGenre.remove("Action", m2);  // Remove Inception (Action)
-    movieByCountry.remove("USA", m4); // Remove Memento (USA)
-
-    // Display movies after removal
-    cout << "\nMovies after removal:" << endl;
-    moviesByGenre.display();
-    movieByCountry.display();
-   //----------------------------------------
-
+    cout << endl << "--------------------" << endl;
+    User user;
+    user.Filter(movies);*/
+   //------------------------------------------
 }
 
 

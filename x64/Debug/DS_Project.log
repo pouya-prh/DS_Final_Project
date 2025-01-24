@@ -1,4 +1,233 @@
-﻿  Movies.cpp
+﻿  Admin.cpp
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'Admin.cpp')
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9):
+  the template instantiation context (the oldest one first) is
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(7,7):
+  	while compiling class template 'HashTable'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(19,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'Admin.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(23,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'Admin.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Admin.cpp(5,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Admin.cpp(5,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'std::string' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Admin.cpp(5,14):
+  		No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Admin.cpp(5,13):
+  while trying to match the argument list '(std::string, std::string, std::string, std::string, int, std::string, float)'
+  
+  mian.cpp
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'mian.cpp')
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9):
+  the template instantiation context (the oldest one first) is
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(7,7):
+  	while compiling class template 'HashTable'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(19,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'mian.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(23,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'mian.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'const char [9]' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,14):
+  		'std::vector<Movie,std::allocator<Movie>>::vector': no overloaded function could convert all the argument types
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(654,5):
+  			could be 'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+  				D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,14):
+  				'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)': cannot convert argument 1 from 'const char [9]' to 'std::initializer_list<_Ty>'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+          and
+          [
+              _Ty=Movie
+          ]
+  					D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,14):
+  					Conversion requires a second user-defined-conversion operator or constructor
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(627,5):
+  			or       'std::vector<Movie,std::allocator<Movie>>::vector(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<Movie>
+          ]
+  			D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,14):
+  			while trying to match the argument list '(const char [9])'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(72,13):
+  while trying to match the argument list '(const char [9], const char [8], const char [28], const char [8], int, const char [4], double)'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'const char [10]' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,14):
+  		'std::vector<Movie,std::allocator<Movie>>::vector': no overloaded function could convert all the argument types
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(654,5):
+  			could be 'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+  				D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,14):
+  				'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)': cannot convert argument 1 from 'const char [10]' to 'std::initializer_list<_Ty>'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+          and
+          [
+              _Ty=Movie
+          ]
+  					D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,14):
+  					Conversion requires a second user-defined-conversion operator or constructor
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(627,5):
+  			or       'std::vector<Movie,std::allocator<Movie>>::vector(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<Movie>
+          ]
+  			D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,14):
+  			while trying to match the argument list '(const char [10])'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(73,13):
+  while trying to match the argument list '(const char [10], const char [7], const char [29], const char [8], int, const char [4], double)'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'const char [16]' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,14):
+  		'std::vector<Movie,std::allocator<Movie>>::vector': no overloaded function could convert all the argument types
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(654,5):
+  			could be 'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+  				D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,14):
+  				'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)': cannot convert argument 1 from 'const char [16]' to 'std::initializer_list<_Ty>'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+          and
+          [
+              _Ty=Movie
+          ]
+  					D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,14):
+  					Conversion requires a second user-defined-conversion operator or constructor
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(627,5):
+  			or       'std::vector<Movie,std::allocator<Movie>>::vector(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<Movie>
+          ]
+  			D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,14):
+  			while trying to match the argument list '(const char [16])'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(74,13):
+  while trying to match the argument list '(const char [16], const char [7], const char [23], const char [8], int, const char [4], double)'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'const char [8]' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,14):
+  		'std::vector<Movie,std::allocator<Movie>>::vector': no overloaded function could convert all the argument types
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(654,5):
+  			could be 'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+  				D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,14):
+  				'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)': cannot convert argument 1 from 'const char [8]' to 'std::initializer_list<_Ty>'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+          and
+          [
+              _Ty=Movie
+          ]
+  					D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,14):
+  					Conversion requires a second user-defined-conversion operator or constructor
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(627,5):
+  			or       'std::vector<Movie,std::allocator<Movie>>::vector(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<Movie>
+          ]
+  			D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,14):
+  			while trying to match the argument list '(const char [8])'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(75,13):
+  while trying to match the argument list '(const char [8], const char [8], const char [34], const char [8], int, const char [4], double)'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,13): error C2665: 'Movie::Movie': no overloaded function could convert all the argument types
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(9,2):
+  could be 'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)'
+  	D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,13):
+  	'Movie::Movie(std::vector<Movie,std::allocator<Movie>>,std::string,std::string,std::string,std::string,int,std::string,float)': cannot convert argument 1 from 'const char [13]' to 'std::vector<Movie,std::allocator<Movie>>'
+  		D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,14):
+  		'std::vector<Movie,std::allocator<Movie>>::vector': no overloaded function could convert all the argument types
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(654,5):
+  			could be 'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+  				D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,14):
+  				'std::vector<Movie,std::allocator<Movie>>::vector(std::initializer_list<_Ty>,const _Alloc &)': cannot convert argument 1 from 'const char [13]' to 'std::initializer_list<_Ty>'
+          with
+          [
+              _Ty=Movie,
+              _Alloc=std::allocator<Movie>
+          ]
+          and
+          [
+              _Ty=Movie
+          ]
+  					D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,14):
+  					Conversion requires a second user-defined-conversion operator or constructor
+  			C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(627,5):
+  			or       'std::vector<Movie,std::allocator<Movie>>::vector(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<Movie>
+          ]
+  			D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,14):
+  			while trying to match the argument list '(const char [13])'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\mian.cpp(76,13):
+  while trying to match the argument list '(const char [13], const char [7], const char [17], const char [8], int, const char [4], double)'
+  
+  Movies.cpp
 D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9): warning C4984: 'if constexpr' is a C++17 language extension
   (compiling source file 'Movies.cpp')
   D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9):
@@ -8,6 +237,29 @@ D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(
   
 D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(19,14): warning C4984: 'if constexpr' is a C++17 language extension
   (compiling source file 'Movies.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(23,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'Movies.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(3,8): error C2511: 'Movie::Movie(std::string,std::string,std::string,std::string,int,std::string,float)': overloaded member function not found in 'Movie'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(6,7):
+  see declaration of 'Movie'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(5,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(6,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(7,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(8,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(9,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(10,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(11,2): error C2671: 'Movie::{ctor}': static member functions do not have 'this' pointers
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(192,17): warning C4244: 'argument': conversion from 'int' to 'const K', possible loss of data
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(192,17): warning C4244:         with
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(192,17): warning C4244:         [
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(192,17): warning C4244:             K=float
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(192,17): warning C4244:         ]
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(214,2): error C2562: 'Movies::Filter': 'void' function returning a value
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.cpp(167,14):
+  see declaration of 'Movies::Filter'
   
   User.cpp
 D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(16,9): warning C4984: 'if constexpr' is a C++17 language extension
@@ -20,7 +272,17 @@ D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(
 D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(19,14): warning C4984: 'if constexpr' is a C++17 language extension
   (compiling source file 'User.cpp')
   
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\HashTable.h(23,14): warning C4984: 'if constexpr' is a C++17 language extension
+  (compiling source file 'User.cpp')
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\User.cpp(76,42): error C2664: 'void Movies::Filter(std::vector<Movie,std::allocator<Movie>> &,std::string,std::string,int,std::string,int)': cannot convert argument 1 from 'std::string' to 'std::vector<Movie,std::allocator<Movie>> &'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\Movies.h(63,7):
+  see declaration of 'Movies::Filter'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\User.cpp(76,42):
+  while trying to match the argument list '(std::string, std::string, int, std::string, int)'
+  
+D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\User.cpp(76,34): error C2440: 'initializing': cannot convert from 'void' to 'std::vector<Movie,std::allocator<Movie>>'
+  D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\DS_Project\User.cpp(76,34):
+  Expressions of type void cannot be converted to other types
+  
   Generating Code...
-  DS_Project.vcxproj -> D:\term3\vitualStudio\Term3\DS_Final_Projeect\DS_Project\x64\Debug\DS_Project.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
