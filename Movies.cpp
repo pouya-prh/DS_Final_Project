@@ -109,40 +109,193 @@ string Serial::getCountry()
 	return country;
 }
 
-void Movies::InsertMovie(Movie& movies)
+void Movies::InsertMovie(Movie& movie)
 {
+	
+	allMovies.push_back(movie);
 
-	allMovies.push_back(movies);
-	string genre = movies.getGanre();
-	string Language = movies.getLanguage();
-	string country = movies.getCountry();
-	float score = movies.getScore();
-	int year = movies.getYear();
-	genres.insert(genre, movies);
-	languages.insert(Language, movies);
-	countries.insert(country, movies);
-	scores.insert(score, movies);
-	years.insert(year, movies);
-	
-	
-	
+	string genre = movie.getGanre();
+	string language = movie.getLanguage();
+	string country = movie.getCountry();
+	float score = movie.getScore();
+	int year = movie.getYear();
+	string name = movie.getName();
+
+	if (!genres.exists(genre)) {
+		genres.insert(genre, HashTable<string, Movie>());
+	}
+	genres.get(genre).insert(name, movie);
+
+	if (!languages.exists(language)) {
+		languages.insert(language, HashTable<string, Movie>());
+	}
+	languages.get(language).insert(name, movie);
+
+	if (!countries.exists(country)) {
+		countries.insert(country, HashTable<string, Movie>());
+	}
+	countries.get(country).insert(name, movie);
+
+	if (!scores.exists(score)) {
+		scores.insert(score, HashTable<string, Movie>());
+	}
+	scores.get(score).insert(name, movie);
+
+	if (!years.exists(year)) {
+		years.insert(year, HashTable<string, Movie>());
+	}
+	years.get(year).insert(name, movie);
 }
 
-void Movies::RemoveMovie(Movie& movie)
-{
+void Movies::RemoveMovie(Movie& movie) {
 	string genre = movie.getGanre();
-	string Language = movie.getLanguage();
+	string language = movie.getLanguage();
 	string country = movie.getCountry();
 	string name = movie.getName();
 	float score = movie.getScore();
 	int year = movie.getYear();
 
-	genres.remove(genre, movie);
-	countries.remove(country, movie);
-	languages.remove(Language, movie);
-	years.remove(year, movie);
+	
+	if (genres.exists(genre)) {
+		genres.get(genre).remove(name, movie);
+	}
+	if (countries.exists(country)) {
+		countries.get(country).remove(name, movie);
+	}
+	if (languages.exists(language)) {
+		languages.get(language).remove(name, movie);
+	}
+	if (scores.exists(score)) {
+		scores.get(score).remove(name, movie);
+	}
+	if (years.exists(year)) {
+		years.get(year).remove(name, movie);
+	}
+
+	auto it = std::remove(allMovies.begin(), allMovies.end(), movie);
+	if (it != allMovies.end()) {
+		allMovies.erase(it, allMovies.end());
+	}
+}
 
 
+void Movies::ShowAllMovies()
+{
+	for (auto it : allMovies)
+	{
+		it.ShowMovieInfo();
+	}
+}
+
+void Movies::Search(string& name, vector<Movie>& results)
+{
+
+	for (auto it : allMovies)
+	{
+		if (it.getName() == name)
+			results.push_back(it);
+	}
+}
+
+vector<Movie> Movies::Filter(string genre, string language, int year, string country, int score)
+{
+
+	if (genre == "\0" && language == "\0" && year == -1 && country == "\0" && score == -1) {
+		return allMovies; 
+	}
+
+	vector<Movie> byGenre;
+	vector<Movie> byLanguage;
+	vector<Movie> byYear;
+	vector<Movie> byCountry;
+	vector<Movie> byScore;
+
+	
+	if (genre != "\0" && genres.exists(genre)) {
+		auto genreTable = genres.get(genre);
+		auto genreKeys = genreTable.getTable();
+		for (const auto& key : genreKeys) {
+			byGenre.push_back(genreTable.get(key));
+		}
+	}
+
+	if (language != "\0" && languages.exists(language)) {
+		auto languageTable = languages.get(language);
+		auto languageKeys = languageTable.getTable();
+		for (const auto& key : languageKeys) {
+			byLanguage.push_back(languageTable.get(key));
+		}
+	}
+
+	if (year != -1 && years.exists(year)) {
+		auto yearTable = years.get(year);
+		auto yearKeys = yearTable.getTable();
+		for (const auto& key : yearKeys) {
+			byYear.push_back(yearTable.get(key));
+		}
+	}
+
+	if (country != "\0" && countries.exists(country)) {
+		auto countryTable = countries.get(country);
+		auto countryKeys = countryTable.getTable();
+		for (const auto& key : countryKeys) {
+			byCountry.push_back(countryTable.get(key));
+		}
+	}
+
+	if (score != -1) {
+		float floatScore = static_cast<float>(score);
+		if (scores.exists(floatScore)) {
+			auto scoreTable = scores.get(floatScore);
+			auto scoreKeys = scoreTable.getTable();
+			for (const auto& key : scoreKeys) {
+				byScore.push_back(scoreTable.get(key));
+			}
+		}
+	}
+
+
+	vector<Movie> tempResult = allMovies;
+
+	if (!byGenre.empty()) {
+		tempResult = IntersectMovies(tempResult, byGenre);
+	}
+	if (!byLanguage.empty()) {
+		tempResult = IntersectMovies(tempResult, byLanguage);
+	}
+	if (!byYear.empty()) {
+		tempResult = IntersectMovies(tempResult, byYear);
+	}
+	if (!byCountry.empty()) {
+		tempResult = IntersectMovies(tempResult, byCountry);
+	}
+	if (!byScore.empty()) {
+		tempResult = IntersectMovies(tempResult, byScore);
+	}
+
+	return tempResult; 
+}
+
+
+
+vector<Movie> Movies::IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2)
+{
+	vector<Movie> result;
+	if (v1.empty() || v2.empty()) {
+		std::cout << "One of the vectors is empty." << std::endl;
+		return result;
+	}
+	for (int i = 0; i < v1.size() ; i++)
+	{
+
+		for (int j = 0; j < v2.size(); j++) {
+			if (v1[i] == v2[j]) {
+				result.push_back(v2[j]);
+				break;
+			}
+		}
+	}
+	return result;
 }
 
 void Serials::InsertSerial(Serial& serial)

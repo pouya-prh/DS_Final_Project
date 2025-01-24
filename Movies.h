@@ -23,6 +23,15 @@ public:
 			year == other.year;
 	}
 	
+	void operator =(const Movie& other)
+	{
+		this->name = other.name;
+		this->country = other.country;
+		this->genre = other.genre;
+		this->score = other.score;
+		this->year = other.year;
+
+	}
 
 private:
 	string name;
@@ -40,23 +49,31 @@ class Movies
 {
 
 public:
-	Movies();
+	Movies()
+		: allMovies(),
+		genres(),
+		languages(),
+		years(),
+		countries(),
+		scores() {}
 	void InsertMovie(Movie&);
 	void RemoveMovie(Movie&);
-	/*void ShowAllMovies();
-	vector<Movie>& Search(string& name);
-	vector<Movie>& Filter(string ganre = "\0", string language = "\0", string year = "\0", string countriy = "\0", int score = -1);
-	vector<Movie>& AdvancedSearch(string& name);*/
+	void ShowAllMovies();
+	void Search(string& name,vector<Movie>& results);
+	vector<Movie> Filter(string genre = "\0", string language = "\0", int year = -1, string country = "\0", int score = -1);
+	vector<Movie> IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2);
+	
+	/*vector<Movie>& AdvancedSearch(string& name);*/
 private:
 
 	 //SplayTree splayTree;
 	 //CompressedTrie compressedTrie;
 	 vector<Movie> allMovies;
-	 HashTable<string,Movie> genres;
-	 HashTable<string,Movie> languages;
-	 HashTable<int,Movie> years;
-	 HashTable<string,Movie> countries;
-	 HashTable<float,Movie> scores;
+	 HashTable<string,HashTable<string,Movie>> genres;
+	 HashTable<string, HashTable<string, Movie>> languages;
+	 HashTable<int, HashTable<string, Movie>> years;
+	 HashTable<string, HashTable<string, Movie>> countries;
+	 HashTable<float, HashTable<string, Movie>> scores;
 	
 
 };

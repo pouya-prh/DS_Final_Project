@@ -3,9 +3,9 @@
 class User
 {
 public:
-	void ShowMoviesInfo();
-	void search();
-	void Filter();
+	void ShowMoviesInfo(Movies&);
+	void search(Movies&,string);
+	void Filter(Movies&);
 	void AdvancedSearch();
 	void FavoritesList();
 	void FavoritesListManagement();
