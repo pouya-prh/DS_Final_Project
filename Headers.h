@@ -14,6 +14,11 @@ using namespace std;
 #include <openssl/sha.h>
 #include <iomanip>
 #include <sstream>
+#include <unordered_map>
+#include <algorithm>
+#include <utility>
+#include "Levenshtein.h"
 //--------------------------
+
 
 using json = nlohmann::json;

@@ -1,19 +1,16 @@
 #pragma once
-#include <iostream>
-#include <unordered_map>
-#include <string>
-#include <vector>
+#include "Headers.h"
 
 class CompressedTrie {
 public:
-    std::unordered_map<char, CompressedTrie*> nodes;
-    std::string prefix;
+    unordered_map<char, CompressedTrie*> nodes;
+    string prefix;
     bool is_leaf;
 
-    CompressedTrie(const std::string& prefix = "", bool is_leaf = false)
+    CompressedTrie(const string& prefix = "", bool is_leaf = false)
         : prefix(prefix), is_leaf(is_leaf) {}
 
-    std::tuple<std::string, std::string, std::string> match(const std::string& word) {
+    tuple<string, string, string> match(const string& word) {
         size_t x = 0;
         for (size_t i = 0; i < prefix.size() && i < word.size(); ++i) {
             if (prefix[i] != word[i]) break;
@@ -22,13 +19,13 @@ public:
         return { prefix.substr(0, x), prefix.substr(x), word.substr(x) };
     }
 
-    void insert_many(const std::vector<std::string>& words) {
+    void insert_many(const vector<string>& words) {
         for (const auto& word : words) {
             insert(word);
         }
     }
 
-    void insert(const std::string& word) {
+    void insert(const string& word) {
         if (prefix == word && !is_leaf) {
             is_leaf = true;
             return;
@@ -40,10 +37,10 @@ public:
         }
 
         CompressedTrie* incoming_node = nodes[word[0]];
-        std::tuple<std::string, std::string, std::string> result = incoming_node->match(word);
-        std::string matching_string = std::get<0>(result);
-        std::string remaining_prefix = std::get<1>(result);
-        std::string remaining_word = std::get<2>(result);
+        tuple<string, string, string> result = incoming_node->match(word);
+        string matching_string = std::get<0>(result);
+        string remaining_prefix = std::get<1>(result);
+        string remaining_word = std::get<2>(result);
 
         if (remaining_prefix.empty()) {
             incoming_node->insert(remaining_word);
@@ -64,31 +61,33 @@ public:
         }
     }
 
-    bool find(const std::string& word) {
+    bool find(const string& word) {
         auto it = nodes.find(word[0]);
         if (it == nodes.end()) return false;
 
-        std::tuple<std::string, std::string, std::string> result = it->second->match(word);
-        std::string matching_string = std::get<0>(result);
-        std::string remaining_prefix = std::get<1>(result);
-        std::string remaining_word = std::get<2>(result);
+        tuple<string, string, string> result = it->second->match(word);
+        string matching_string = get<0>(result);
+        string remaining_prefix = get<1>(result);
+        string remaining_word = get<2>(result);
 
-        if (!remaining_prefix.empty()) return false;
+        if (!remaining_prefix.empty()) 
+            return false;
 
-        if (remaining_word.empty()) return it->second->is_leaf;
+        if (remaining_word.empty())
+            return it->second->is_leaf;
 
         return it->second->find(remaining_word);
     }
 
-    bool delete_word(const std::string& word) {
+    bool delete_word(const string& word) {
         auto it = nodes.find(word[0]);
-        if (it == nodes.end()) return false;
+        if (it == nodes.end())
+            return false;
 
-        //auto [matching_string, remaining_prefix, remaining_word] = it->second->match(word);
-        std::tuple<std::string, std::string, std::string> result = it->second->match(word);
-        std::string matching_string = std::get<0>(result);
-        std::string remaining_prefix = std::get<1>(result);
-        std::string remaining_word = std::get<2>(result);
+        tuple<string, string, string> result = it->second->match(word);
+        string matching_string = get<0>(result);
+        string remaining_prefix = get<1>(result);
+        string remaining_word = get<2>(result);
 
         if (!remaining_prefix.empty())
             return false;
@@ -108,7 +107,7 @@ public:
                 CompressedTrie* merging_node = nodes.begin()->second;
                 is_leaf = merging_node->is_leaf;
                 prefix += merging_node->prefix;
-                nodes = std::move(merging_node->nodes);
+                nodes = move(merging_node->nodes);
                 delete merging_node;
             }
         }
@@ -119,16 +118,56 @@ public:
             CompressedTrie* merging_node = it->second->nodes.begin()->second;
             it->second->is_leaf = merging_node->is_leaf;
             it->second->prefix += merging_node->prefix;
-            it->second->nodes = std::move(merging_node->nodes);
+            it->second->nodes = move(merging_node->nodes);
             delete merging_node;
         }
 
         return true;
     }
 
+    void print_similar_results(const string& word) {
+        CompressedTrie* node = this;
+        string prefix_match = "";
+        int curIndex = 0;
+        int prefixInd = 0;
+        while (curIndex < word.length()) {
+            for (int i = 0; i < node->prefix.length() && curIndex < word.length(); i++) {
+                if (node->prefix[i] != word[curIndex]) {
+                    cout << "No matching words found !" << endl;
+                    return;
+                }
+                prefix_match += word[curIndex];
+                curIndex++;
+                prefixInd = i;
+            }
+            if (curIndex >= word.length())
+                break;
+            if (curIndex < word.length() && node->nodes.find(word[curIndex])!= node->nodes.end())
+                node = node->nodes[word[curIndex]];
+            else if (node->nodes.find(word[curIndex]) == node->nodes.end())
+                return;
+        }
+        print_all_words(node, prefix_match, prefixInd);
+    }
+
+
+    void print_all_words(CompressedTrie* node, const string& prefix, int prefixInd) {
+        if (node->is_leaf) {
+            cout << prefix;
+            for (int i = prefixInd; i < node->prefix.length(); i++) {
+                cout << node->prefix[i];
+            }
+            cout << endl;
+        }
+        
+        for (const auto& pair : node->nodes) {
+            print_all_words(pair.second, prefix + pair.second->prefix, pair.second->prefix.length());
+        }
+    }
+
     void print_tree(int height = 0) const {
         if (!prefix.empty()) {
-            std::cout << std::string(height, '-') << " " << prefix
+            cout << string(height, '-') << " " << prefix
                 << (is_leaf ? "  (leaf)" : "") << "\n";
         }
 

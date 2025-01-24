@@ -8,20 +8,14 @@ class Movie
 public:
 	Movie(string name, string ganre, string story, string language, int year,string country,float score = -1);
 	void ShowMovieInfo();
-	string getGanre();
-	string getName();
-	string getStory();
-	string getLanguage();
-	int getYear();
-	float getScore();
-	string getCountry();
-	bool operator==(const Movie& other) const {
-		return name == other.name &&
-			genre == other.genre &&
-			country == other.country &&
-			score == other.score &&
-			year == other.year;
-	}
+	string getGanre() const;
+	string getName() const;
+	string getStory() const;
+	string getLanguage() const;
+	int getYear() const;
+	float getScore() const;
+	string getCountry() const;
+	bool operator==(const Movie& other) const;
 	
 	void operator =(const Movie& other)
 	{
@@ -44,6 +38,8 @@ private:
 
 
 };
+const Movie NIL("", "", "", "", 0, "");
+
 
 class Movies
 {
@@ -92,13 +88,7 @@ public:
 	int getYear();
 	float getScore();
 	string getCountry();
-	bool operator==(const Serial& other) const {
-		return name == other.name &&
-			genre == other.genre &&
-			country == other.country &&
-			score == other.score &&
-			year == other.year;
-	}
+	bool operator==(const Serial& other) const;
 private:
 	string name;
 	string genre;

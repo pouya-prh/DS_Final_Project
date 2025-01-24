@@ -17,39 +17,48 @@ void Movie::ShowMovieInfo()
 		<< "country: " << country << endl << "year: " << year <<endl << "language: " << language << endl;
 }
 
-string Movie::getGanre()
+string Movie::getGanre() const
 {
 	return genre;
 }
 
-string Movie::getName()
+string Movie::getName()const
 {
 	return name;
 }
 
-string Movie::getStory()
+string Movie::getStory()const
 {
 	return story;
 }
 
-int Movie::getYear()
+int Movie::getYear()const
 {
 	return year;
 }
 
-float Movie::getScore()
+float Movie::getScore()const
 {
 	return score;
 }
 
-string Movie::getCountry()
+string Movie::getCountry()const
 {
 	return country;
 }
 
-string Movie::getLanguage()
+string Movie::getLanguage()const
 {
 	return language;
+}
+
+
+bool Movie::operator==(const Movie& other) const {
+	return name == other.name &&
+		genre == other.genre &&
+		country == other.country &&
+		score == other.score &&
+		year == other.year;
 }
 
 Serial::Serial(string& name, string& ganre, string& story, string& language, int& year, 
@@ -108,6 +117,15 @@ string Serial::getCountry()
 {
 	return country;
 }
+
+bool Serial::operator==(const Serial& other) const {
+	return name == other.name &&
+		genre == other.genre &&
+		country == other.country &&
+		score == other.score &&
+		year == other.year;
+}
+
 
 void Movies::InsertMovie(Movie& movie)
 {
