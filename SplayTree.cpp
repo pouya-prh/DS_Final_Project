@@ -65,16 +65,18 @@ SplayNode* SplayTree::splay(SplayNode* root, const string& targetKey) {
 void SplayTree::insert(const string& key) {
     if (root == nullptr) {
         root = new SplayNode(key);
+        _size++;
         return;
     }
 
 
     root = splay(root, key);
 
-    if (root->key == key)
+    if (root->key == key)// tree just updated
         return;
 
     SplayNode* newNode = new SplayNode(key);
+    _size++;
 
     
     if (key < root->key) {

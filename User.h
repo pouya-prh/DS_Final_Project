@@ -13,6 +13,7 @@ public:
 	void DeleteFromFavoriteList(Movies&,string);
 	void PrefferdMovies(Movies&);
 	void Scoring(Movies&, string,float);
+	void watch(Movies&, string);
 private:
 
 	ListOfInterests interestedList;

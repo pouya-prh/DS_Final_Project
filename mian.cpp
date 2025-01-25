@@ -4,7 +4,13 @@
 #include "Admin.h"
 #include "Movies.h"
 using namespace std;
-
+std::string trim(const std::string& str) {
+	std::string trimmed = str;
+	trimmed.erase(std::find_if(trimmed.rbegin(), trimmed.rend(), [](unsigned char ch) {
+		return !std::isspace(ch);
+		}).base(), trimmed.end());
+	return trimmed;
+}
 
 int main()
 {
@@ -23,6 +29,7 @@ int main()
 				string command;
 				
 				getline(cin, command);
+
 				if (command == "show all movies")
 				{
 					user.ShowMoviesInfo(movies);
@@ -30,6 +37,14 @@ int main()
 				else if (command == "search")
 				{
 					user.search(movies);
+				}
+				else if (command == "watch movie")
+				{
+					cout << "Enter movie's name :" << endl;
+					string name;
+					getline(cin, name);
+					cin.clear();
+					user.watch(movies, name);
 				}
 				else if (command == "filter")
 				{
@@ -40,7 +55,8 @@ int main()
 					string name;
 					cout << "What is the movie`s name? ";
 				
-					cin >> name;
+					getline(cin, name);
+					cin.clear();
 					user.InsertToFavoriteList(movies, name);
 				}
 				else if (command == "remove from favorite")
@@ -48,7 +64,8 @@ int main()
 					string name;
 					cout << "What is the movie`s name? ";
 				
-					cin >> name;
+					getline(cin, name);
+					cin.clear();
 					user.DeleteFromFavoriteList(movies, name);
 				}
 				else if (command == "show favorite list")
@@ -64,8 +81,10 @@ int main()
 					string name;
 					float score;
 					cout << "What is the movie`s name? ";
-					cin.ignore();
-					cin >> name;
+					getline(cin, name);
+					cin.clear();
+					//cin.ignore();
+					//cin >> name;
 					cout << "score: ";
 					cin >> score;
 					user.Scoring(movies, name, score);
@@ -74,8 +93,8 @@ int main()
 				{
 					break;
 				}
-
-
+				cin.clear();  
+				//cin.ignore();
 			}
 
 		}
@@ -86,6 +105,7 @@ int main()
 			{
 				string command;
 				getline(cin, command);
+				
 				if (command == "Add movie")
 				{
 					string genre;
@@ -100,23 +120,28 @@ int main()
 					cout << "Name: ";
 					
 					getline(cin, name);
+					cin.clear();
 
 					cout << "Genre: ";
 					getline(cin, genre);
+					cin.clear();
 
 					cout << "Country: ";
 					getline(cin, country);
+					cin.clear();
 
 					cout << "Language: ";
 					getline(cin, language);
+					cin.clear();
 
 					cout << "Story (brief description): ";
 					getline(cin, story);
+					cin.clear();
 
 					cout << "Year: ";
 					cin >> year;
 
-					cout << "Score (out of 10): ";
+					cout << "Score (out of 10): ";/// remove it later
 					cin >> score;
 
 					admin.AddMovie(movies, name, genre, story, language, year, country, score);
@@ -125,40 +150,45 @@ int main()
 				}
 				else if (command == "Delete movie")
 				{
-					string genre;
+					//string genre;
 					string name;
-					string country;
+					/*string country;
 					string language;
 					string story;
 					int year;
 					float score;
-					cout << "Please complete the following questions:\n";
+					cout << "Please complete the following questions:\n";*/
 
 					cout << "Name: ";
 				
 					getline(cin, name);
-
-					cout << "Genre: ";
+					cin.clear();
+				
+					/*cout << "Genre: ";
 					getline(cin, genre);
+					cin.clear();
 
 					cout << "Country: ";
 					getline(cin, country);
+					cin.clear();
 
 					cout << "Language: ";
 					getline(cin, language);
+					cin.clear();
 
 					cout << "Story (brief description): ";
 					getline(cin, story);
+					cin.clear();
 
 					cout << "Year: ";
 					cin >> year;
 
-					cout << "Score (out of 10): ";
-					cin >> score;
+					cout << "Score (out of 10): ";///remove it later
+					cin >> score;*/
 
-					admin.RemoveMovie(movies, name, genre, story, language, year, country, score);
+					admin.RemoveMovie(movies, name);
 
-					cout << "Movie Deleted successfully!\n";
+					/*cout << "Movie Deleted successfully!\n";*/
 				}
 				else if (command == "exit")
 				{
