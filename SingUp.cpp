@@ -13,7 +13,7 @@ string HashPassword(const string& password) {
     return oss.str();
 }
 
-void SignUp::MakeNewAccount()
+void SignUpAndSignIn::MakeNewAccount()
 {
 	cout << "User name: ";
 	string username;
@@ -25,7 +25,7 @@ void SignUp::MakeNewAccount()
     SaveAccountToFile(username, password);
 }
 
-void SignUp::SaveAccountToFile(string& username, string& hashedPassword)
+void SignUpAndSignIn::SaveAccountToFile(string& username, string& hashedPassword)
 {
    
     ifstream inputFile("accounts.json");
@@ -43,4 +43,45 @@ void SignUp::SaveAccountToFile(string& username, string& hashedPassword)
     ofstream outputFile("accounts.json");
     outputFile << setw(4) << accounts << endl;
     outputFile.close();
+}
+
+
+int SignUpAndSignIn::SignInToAccount() {
+    cout << "User name: ";
+    string username;
+    cin >> username;
+
+    cout << "Password: ";
+    string password;
+    cin >> password;
+
+    if (username == "Admin" && password == "Admin")
+    {
+        cout << "Wellcome Admin \n";
+        return 1;
+    }
+    string hashedPassword = HashPassword(password);
+
+    
+    ifstream inputFile("accounts.json");
+    json accounts;
+
+    if (inputFile.is_open()) {
+        inputFile >> accounts;
+        inputFile.close();
+    }
+    else {
+        cout << "Error: Could not open accounts file.\n";
+        return - 1;
+    }
+
+
+    if (accounts.contains(username) && accounts[username]["password"] == hashedPassword) {
+        cout << "Sign-in successful. Welcome, " << username << "!\n";
+        return 0;
+    }
+    else {
+        cout << "Error: Invalid username or password.\n";
+        return -1;
+    }
 }

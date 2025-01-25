@@ -147,7 +147,7 @@ public:
             else if (node->nodes.find(word[curIndex]) == node->nodes.end())
                 return;
         }
-        print_all_words(node, prefix_match, prefixInd);
+        print_all_words(node, prefix_match, prefixInd + 1);
     }
 
 
