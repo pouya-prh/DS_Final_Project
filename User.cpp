@@ -5,15 +5,15 @@ void User::ShowMoviesInfo(Movies& movies)
 	movies.ShowAllMovies();
 }
 
-void User::search(Movies& movies,string name)
+void User::search(Movies& movies)
 {
-    vector<Movie> results;
-
-	movies.Search(name, results);
-    for (auto it : results)
-    {
-        it.ShowMovieInfo();
-    }
+    cout << "Which kind of search do you want? ";
+    size_t typeOfSearch;
+    cin >> typeOfSearch;
+    string name;
+    cout << "What is the name of movie? ";
+    cin >> name;
+	movies.Search(typeOfSearch, name);
 }
 void User::Filter(Movies& movies)
 {
@@ -73,21 +73,9 @@ void User::Filter(Movies& movies)
 
     cout << "Applying your filters..." << endl;
 
-    vector<Movie> filteredMovies = movies.Filter(genre, language, date, country, score);
-
-    if (filteredMovies.empty())
-    {
-        cout << "No movies found matching your filters." << endl;
-    }
-    else
-    {
-        cout << "Here are the movies that match your filters:" << endl;
-        for (auto& movie : filteredMovies)
-        {
-            movie.ShowMovieInfo();
-        }
-    }
+    movies.Filter(genre, language, date, country, score);
 }
+
 
 
 

@@ -93,7 +93,7 @@ public:
         throw runtime_error("Key not found");
     }
 
-    bool exists(K& key) {
+    bool exists(const K& key) const{
         int bucketIndex = hashFunction(key);
         auto& bucket = table[bucketIndex];
         for (auto& item : bucket) {

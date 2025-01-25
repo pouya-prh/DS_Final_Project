@@ -1,123 +1,112 @@
 #include "Headers.h"
 #include "Menu.h"
 #include "User.h";
+#include "Admin.h"
 #include "Movies.h"
-#include "CompressedTrie.h"
+using namespace std;
+
 
 int main()
 {
-	
-
-    //-----------------------------------
-	/* 
-      Menu menu;
-	  menu.ShowMenu();
-    */
-
-
-    //------------------------------------Splay tree test:
-   /* SplayTree tree;
-    tree.insert("The Dark Knight");
-    tree.insert("Inception");
-    tree.insert("Interstellar");
-
-    tree.display();  
-    cout << "--------------------"<<endl;
-    tree.insert("Inception"); 
-    tree.display(); */
-    //------------------------------------Compressed tree test:
-   /* CompressedTrie root;
-    std::vector<std::string> words{ "banana", "bananas", "bandanas", "bandana", "band", "apple", "all", "beast" };
-    
-    root.insert_many(words);
-    
-    std::cout << "Words: ";
-    for (const auto& word : words) {
-        std::cout << word << " ";
-    }
-    
-    std::cout << "\nTree:\n";
-    root.print_tree();*/
-  //--------------------------------------Hash table test:
-    //Movie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
-    //Movie m2("Inception", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
-    //Movie m3("The Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.0);
-    //Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
-    //Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
-
-    //// Create a hash table to store movies by genre
-    //HashTable<string, Movie> moviesByGenre;
-    //// Insert movies into the hash table
-    //moviesByGenre.insert("Action", m2);
-    //moviesByGenre.insert("Action", m3);
-    //moviesByGenre.insert("Mystery", m1);
-
-    //HashTable <string, HashTable<string, Movie>> table;
-    //table.insert("genre", moviesByGenre);
-    ////// Display movies in the hash table
-    //cout << "Movies before removal:" << endl;
-    //moviesByGenre.display();
-  
-    //moviesByGenre.remove("Action", m2);  // Remove Inception (Action)
-    //
-
-    //// Display movies after removal
-    //cout << "\nMovies after removal:" << endl;
-    //moviesByGenre.display();
-    
-   //----------------------------------------Filter test
-    M/*ovie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
-    Movie m2("Inception", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
-    Movie m3("The Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.0);
-    Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
-    Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
-   
-    Movies movies;
-    movies.InsertMovie(m1);
-    movies.InsertMovie(m2);
-    movies.InsertMovie(m3);
-    movies.InsertMovie(m4);
-    movies.InsertMovie(m5);
-
-    movies.ShowAllMovies();
-
-    cout << endl << "--------------------" << endl;
-    User user;
-    user.Filter(movies);*/
-
-	//---------------------------------------- Search and Insert and deletion test:
-   /*Movie m1("Prestige", "Mystery", "you should just watch it...", "English", 2008, "USA", 8.5);
-	Movie m2("Inteption", "Action", "Mind-bending action thriller", "English", 2010, "USA", 9.0);
-	Movie m3("Int Dark Knight", "Action", "Superhero action movie", "English", 2008, "USA", 9.2);
-	Movie m4("Memento", "Mystery", "Suspenseful story told in reverse", "English", 2000, "USA", 8.5);
-	Movie m5("Interstellar", "Action", "Sci-fi adventure", "English", 2014, "USA", 8.6);
 	Menu menu;
-	menu.addMovie(m1);
-	menu.addMovie(m2);
-	menu.addMovie(m3);
-	menu.addMovie(m4);
-	menu.addMovie(m5);
-	const Movie& tmp1 = menu.findMovie("Memento");
-	const Movie& tmp2 = menu.findMovie("Int Dark Knight");
-	const Movie& tmp3 = menu.findMovie("Interstellar");
-	const Movie& tmp4 = menu.findMovie("Memento");
-	const Movie& tmp5 = menu.findMovie("Memento");
-	const Movie& tmp6 = menu.findMovie("Interstellar");
+	Movies movies;
+	
+	while(true)
+	{
+		int type = menu.ShowMenu();
+		if (type == 0) //user
+		{
+			return 0;
+			User user;
 
-	menu.search(2, "Int");
-	cout << "-------------------------------------------------" << endl;
-	
-	menu.deleteMovie("Interstellar");
-	
-	menu.search(2, "Interslar");
-	cout << "-------------------------------------------------" << endl;
-	
-	menu.deleteMovie("Memento");
-	
-	menu.search(2, "Inters");
-	cout << "-------------------------------------------------" << endl;
-	cout << "suggestion:" << endl;
-	menu.showSuggest();*/
+		}
+		else if (type == 1) //admin
+		{
+			Admin admin;
+			while (true)
+			{
+				string command;
+				getline(cin, command);
+				if (command == "Add movie")
+				{
+					string genre;
+					string name;
+					string country;
+					string language;
+					string story;
+					int year;
+					float score;
+					cout << "Please complete the following questions:\n";
+
+					cout << "Name: ";
+					cin.ignore();
+					getline(cin, name);
+
+					cout << "Genre: ";
+					getline(cin, genre);
+
+					cout << "Country: ";
+					getline(cin, country);
+
+					cout << "Language: ";
+					getline(cin, language);
+
+					cout << "Story (brief description): ";
+					getline(cin, story);
+
+					cout << "Year: ";
+					cin >> year;
+
+					cout << "Score (out of 10): ";
+					cin >> score;
+
+					admin.AddMovie(movies, name, genre, story, language, year, country, score);
+
+					cout << "Movie added successfully!\n";
+				}
+				else if (command == "Delete movie")
+				{
+					string genre;
+					string name;
+					string country;
+					string language;
+					string story;
+					int year;
+					float score;
+					cout << "Please complete the following questions:\n";
+
+					cout << "Name: ";
+					cin.ignore();
+					getline(cin, name);
+
+					cout << "Genre: ";
+					getline(cin, genre);
+
+					cout << "Country: ";
+					getline(cin, country);
+
+					cout << "Language: ";
+					getline(cin, language);
+
+					cout << "Story (brief description): ";
+					getline(cin, story);
+
+					cout << "Year: ";
+					cin >> year;
+
+					cout << "Score (out of 10): ";
+					cin >> score;
+
+					admin.RemoveMovie(movies, name, genre, story, language, year, country, score);
+
+					cout << "Movie Deleted successfully!\n";
+				}
+			}
+		}
+		
+	}
+
+	return 0;
 }
 
 

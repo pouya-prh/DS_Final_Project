@@ -13,11 +13,11 @@ Movie::Movie(string name, string ganre, string story, string language, int year,
 
 void Movie::ShowMovieInfo()
 {
-	cout << "name: " << name << endl << "ganre: " << genre << endl << "story: " <<story<< endl
-		<< "country: " << country << endl << "year: " << year <<endl << "language: " << language << endl;
+	cout << "name: " << name << endl << "genre: " << genre << endl << "story: " <<story<< endl
+		<< "country: " << country << endl << "year: " << year <<endl << "language: " << language << endl<<"-----------------------------\n";
 }
 
-string Movie::getGanre() const
+string Movie::getGenre() const
 {
 	return genre;
 }
@@ -78,12 +78,12 @@ Serial::Serial(string& name, string& ganre, string& story, string& language, int
 
 void Serial::ShowSerialInfo()
 {
-	cout << "name: " << name << endl << "ganre: " << genre << endl << "story: " << story << endl
+	cout << "name: " << name << endl << "genre: " << genre << endl << "story: " << story << endl
 		<< "country: " << country << endl << "year: " << year << endl << "language: " << language << endl
 		<< "seasonNum: " << seasonsNum << endl<<"episodeNum: "<<episodesNum<<endl << "episodeTime: " << episodeTime << endl;
 }
 
-string Serial::getGanre()
+string Serial::getGenre()
 {
 	return genre;
 }
@@ -129,10 +129,22 @@ bool Serial::operator==(const Serial& other) const {
 
 void Movies::InsertMovie(Movie& movie)
 {
-	
-	allMovies.push_back(movie);
+	Movie M = searchFunctions.find(movie.getName());
+	if (!(M == NIL)) {
+		cout << "this movie exists before !" << endl;
+		return;
+	}
 
-	string genre = movie.getGanre();
+	allMoviesVector.push_back(movie);
+
+	if (!allMovies.exists(movie.getGenre())) {
+		AVLTree <pair< float, string >> newAvl;
+		allMovies.insert(movie.getGenre(), newAvl);
+	}
+	allMovies.get(movie.getGenre()).insert({ movie.getScore(), movie.getName() });
+	searchFunctions.addNewMovieToList(movie);
+
+	string genre = movie.getGenre();
 	string language = movie.getLanguage();
 	string country = movie.getCountry();
 	float score = movie.getScore();
@@ -166,14 +178,26 @@ void Movies::InsertMovie(Movie& movie)
 }
 
 void Movies::RemoveMovie(Movie& movie) {
-	string genre = movie.getGanre();
+
+	string genre = movie.getGenre();
 	string language = movie.getLanguage();
 	string country = movie.getCountry();
 	string name = movie.getName();
 	float score = movie.getScore();
 	int year = movie.getYear();
 
-	
+	Movie m = searchFunctions.find(name);
+	if (!(m == NIL)) {
+		searchFunctions.deleteMovie(name);
+		allMovies.get(genre).deleteKey({ score, name });
+		if (allMovies.get(genre).size() == 0) {
+			allMovies.remove(genre, allMovies.get(genre));
+			cache.erase(genre);
+		}
+		return;
+	}
+
+
 	if (genres.exists(genre)) {
 		genres.get(genre).remove(name, movie);
 	}
@@ -189,37 +213,62 @@ void Movies::RemoveMovie(Movie& movie) {
 	if (years.exists(year)) {
 		years.get(year).remove(name, movie);
 	}
-
-	auto it = std::remove(allMovies.begin(), allMovies.end(), movie);
-	if (it != allMovies.end()) {
-		allMovies.erase(it, allMovies.end());
+	auto it = std::find(allMoviesVector.begin(), allMoviesVector.end(), movie);
+	if (it != allMoviesVector.end()) {
+		allMoviesVector.erase(it);
 	}
 }
 
 
 void Movies::ShowAllMovies()
 {
-	for (auto it : allMovies)
+	for (auto it : allMoviesVector)
 	{
 		it.ShowMovieInfo();
 	}
 }
 
-void Movies::Search(string& name, vector<Movie>& results)
+void Movies::showSuggest()
 {
+	string mostRecentGanre = cache.getMostRecent();
+	allMovies.get(mostRecentGanre).inOrder();
+}
 
-	for (auto it : allMovies)
+const Movie& Movies::findMovie(string movieName)
+{
+	Movie m = searchFunctions.find(movieName);
+	if (!(m == NIL)) {
+		if (!cache.find(m.getGenre()))
+			cache.insert(m.getGenre());
+
+		return m;
+	}
+	return NIL;
+}
+
+void Movies::Search(size_t typeOfSearch, string movieName)
+{
+	switch (typeOfSearch)
 	{
-		if (it.getName() == name)
-			results.push_back(it);
+	case 1:
+		searchFunctions.showResults(movieName);
+		break;
+	case 2:
+		searchFunctions.advancedSearch(movieName);
+		break;
+	case 3:
+		break;
+	default:
+		cout << "invalid input" << endl;
+		break;
 	}
 }
 
-vector<Movie> Movies::Filter(string genre, string language, int year, string country, int score)
+void Movies::Filter(string genre, string language, int year, string country, int score)
 {
 
 	if (genre == "\0" && language == "\0" && year == -1 && country == "\0" && score == -1) {
-		return allMovies; 
+		ShowAllMovies();
 	}
 
 	vector<Movie> byGenre;
@@ -273,7 +322,7 @@ vector<Movie> Movies::Filter(string genre, string language, int year, string cou
 	}
 
 
-	vector<Movie> tempResult = allMovies;
+	vector<Movie> tempResult = allMoviesVector;
 
 	if (!byGenre.empty()) {
 		tempResult = IntersectMovies(tempResult, byGenre);
@@ -291,7 +340,9 @@ vector<Movie> Movies::Filter(string genre, string language, int year, string cou
 		tempResult = IntersectMovies(tempResult, byScore);
 	}
 
-	return tempResult; 
+	for (auto it : tempResult) {
+		it.ShowMovieInfo();
+	}
 }
 
 
@@ -319,7 +370,7 @@ vector<Movie> Movies::IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2)
 void Serials::InsertSerial(Serial& serial)
 {
 	allMovies.push_back(serial);
-	string genre = serial.getGanre();
+	string genre = serial.getGenre();
 	string Language = serial.getLanguage();
 	string country = serial.getCountry();
 	float score = serial.getScore();
@@ -333,7 +384,7 @@ void Serials::InsertSerial(Serial& serial)
 
 void Serials::RemoveSerial(Serial& serial)
 {
-	string genre = serial.getGanre();
+	string genre = serial.getGenre();
 	string Language = serial.getLanguage();
 	string country = serial.getCountry();
 	string name = serial.getName();
@@ -345,3 +396,4 @@ void Serials::RemoveSerial(Serial& serial)
 	languages.remove(Language, serial);
 	years.remove(year, serial);
 }
+

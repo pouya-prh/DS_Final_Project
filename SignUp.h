@@ -1,10 +1,11 @@
 #pragma once
 #include "Headers.h"
-class SignUp
+class SignUpAndSignIn
 {
 public:
 
 	void MakeNewAccount();
 	void SaveAccountToFile(string& username, string& hashedPassword);
+	int SignInToAccount();
 };
 
