@@ -16,8 +16,67 @@ int main()
 		int type = menu.ShowMenu();
 		if (type == 0) //user
 		{
-			return 0;
+			
 			User user;
+			while (true)
+			{
+				string command;
+				
+				getline(cin, command);
+				if (command == "show all movies")
+				{
+					user.ShowMoviesInfo(movies);
+				}
+				else if (command == "search")
+				{
+					user.search(movies);
+				}
+				else if (command == "filter")
+				{
+					user.Filter(movies);
+				}
+				else if (command == "add to favorite")
+				{
+					string name;
+					cout << "What is the movie`s name? ";
+				
+					cin >> name;
+					user.InsertToFavoriteList(movies, name);
+				}
+				else if (command == "remove from favorite")
+				{
+					string name;
+					cout << "What is the movie`s name? ";
+				
+					cin >> name;
+					user.DeleteFromFavoriteList(movies, name);
+				}
+				else if (command == "show favorite list")
+				{
+					user.ShowFavoritesList();
+				}
+				else if (command == "show suggests")
+				{
+					user.PrefferdMovies(movies);
+				}
+				else if (command == "scoreing")
+				{
+					string name;
+					float score;
+					cout << "What is the movie`s name? ";
+					cin.ignore();
+					cin >> name;
+					cout << "score: ";
+					cin >> score;
+					user.Scoring(movies, name, score);
+				}
+				else if (command == "exit")
+				{
+					break;
+				}
+
+
+			}
 
 		}
 		else if (type == 1) //admin
@@ -39,7 +98,7 @@ int main()
 					cout << "Please complete the following questions:\n";
 
 					cout << "Name: ";
-					cin.ignore();
+					
 					getline(cin, name);
 
 					cout << "Genre: ";
@@ -76,7 +135,7 @@ int main()
 					cout << "Please complete the following questions:\n";
 
 					cout << "Name: ";
-					cin.ignore();
+				
 					getline(cin, name);
 
 					cout << "Genre: ";
@@ -100,6 +159,10 @@ int main()
 					admin.RemoveMovie(movies, name, genre, story, language, year, country, score);
 
 					cout << "Movie Deleted successfully!\n";
+				}
+				else if (command == "exit")
+				{
+					break;
 				}
 			}
 		}

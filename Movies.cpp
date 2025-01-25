@@ -9,12 +9,16 @@ Movie::Movie(string name, string ganre, string story, string language, int year,
 	this->year = year;
 	this->country = country;
 	this->score = score;
+	if (score >= 0)
+	{
+		scoreAvg.push_back(score);
+	}
 }
 
 void Movie::ShowMovieInfo()
 {
 	cout << "name: " << name << endl << "genre: " << genre << endl << "story: " <<story<< endl
-		<< "country: " << country << endl << "year: " << year <<endl << "language: " << language << endl<<"-----------------------------\n";
+		<< "country: " << country << endl << "year: " << year <<endl << "language: " << language << endl<<"score: "<<score << "-----------------------------\n";
 }
 
 string Movie::getGenre() const
@@ -45,6 +49,17 @@ float Movie::getScore()const
 string Movie::getCountry()const
 {
 	return country;
+}
+
+void Movie::setScore(float score)
+{
+	scoreAvg.push_back(score);
+	float avg = 0;
+	for (int i = 0; i < scoreAvg.size(); i++)
+	{
+		avg += scoreAvg[i];
+	}
+	score = (avg / scoreAvg.size());
 }
 
 string Movie::getLanguage()const
