@@ -7,12 +7,15 @@ void User::ShowMoviesInfo(Movies& movies)
 
 void User::search(Movies& movies)
 {
+    //cin.clear();
+    //cin.ignore();
+    string name;
+    cout << "What is the name of movie? ";
+    getline(cin, name);
+    cin.clear();
     cout << "Which kind of search do you want? (1.simple  2.advance)";
     size_t typeOfSearch;
     cin >> typeOfSearch;
-    string name;
-    cout << "What is the name of movie? ";
-    cin >> name;
 	movies.Search(typeOfSearch, name);
 }
 void User::Filter(Movies& movies)
@@ -119,7 +122,6 @@ void User::Scoring(Movies& movies, string name,float score)
     movie.setScore(score);
 }
 
-
-
-
-
+void User::watch(Movies& movies, string name) {
+    movies.watch_movie(name);
+}

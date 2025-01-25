@@ -50,28 +50,6 @@ const Movie NIL("", "", "", "", 0, "");
 
 class Movies
 {
-
-public:
-	Movies()
-		: allMovies(),
-		genres(),
-		languages(),
-		years(),
-		countries(),
-		scores() {}
-	void InsertMovie(Movie&);
-	void RemoveMovie(Movie&);
-	void ShowAllMovies();
-	void showSuggest();
-	const Movie& findMovie(string movieName);
-	void Search(size_t typeOfSearch, string movieName);
-	void Filter(string genre = "\0", string language = "\0", int year = -1, string country = "\0", int score = -1);
-	vector<Movie> IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2);
-	
-private:
-
-
-
 	class SearchMovie {
 		HashTable<string, Movie> movies;
 		CompressedTrie trie;
@@ -82,8 +60,7 @@ private:
 			//movies[m.getName()] = m;
 			movies.insert(m.getName(), m);
 			//movies.push_back(m);
-			trie.insert(m.getName());// .name() added to movie
-			//cache.insert(m.Name());
+			trie.insert(m.getName());
 		}
 
 		void deleteMovie(const string& search_text) {
@@ -98,6 +75,10 @@ private:
 			if (cache.find(search_text)) {
 				cache.erase(search_text);
 			}
+		}
+
+		bool exists(const string& search_text) {
+			return trie.find(search_text);
 		}
 
 		const Movie& find(const string& search_text) {
@@ -127,8 +108,9 @@ private:
 			vector<string> names = movies.getTable();
 			Levenshtein lev;
 			for (auto name : names) {
-				if (lev.minDistance(search_text, name) <= search_text.length() / 3) {
+				if (lev.minDistance(search_text, name) <= max(name.length(), search_text.length()) / 3) {
 					cout << name << endl;
+					cache.insert(name);
 				}
 			}
 			cout << endl;
@@ -137,20 +119,45 @@ private:
 		void showRecentlySearches() {
 			cache.printNearRoot(2);
 		}
-
+	
+		void watch_movie(const string& search_text) {
+			if (!cache.empty())
+			{
+				cache.insert(search_text);
+				movies.get(search_text).ShowMovieInfo();
+				return;
+			}
+			cout << "Movie not found, we suggest you to search to find movie !"<<endl;
+		}
 	};
 
-	 SplayTree cache;
-	 HashTable<string, AVLTree<pair<float, string>>> allMovies;
-	 SearchMovie searchFunctions;
-	 vector<Movie> allMoviesVector;
-	 HashTable<string,HashTable<string,Movie>> genres;
-	 HashTable<string, HashTable<string, Movie>> languages;
-	 HashTable<int, HashTable<string, Movie>> years;
-	 HashTable<string, HashTable<string, Movie>> countries;
-	 HashTable<float, HashTable<string, Movie>> scores;
-	 
+	SplayTree cache;
+	HashTable<string, AVLTree<pair<float, string>>> allMovies;
+	SearchMovie searchFunctions;
+	vector<Movie> allMoviesVector;
+	HashTable<string,HashTable<string,Movie>> genres;
+	HashTable<string, HashTable<string, Movie>> languages;
+	HashTable<int, HashTable<string, Movie>> years;
+	HashTable<string, HashTable<string, Movie>> countries;
+	HashTable<float, HashTable<string, Movie>> scores;
 
+public:
+	Movies()
+		: allMovies(),
+		genres(),
+		languages(),
+		years(),
+		countries(),
+		scores() {}
+	void InsertMovie(Movie&);
+	void RemoveMovie(string);
+	void ShowAllMovies();
+	void showSuggest();
+	void watch_movie(string movieName);
+	const Movie& findMovie(string movieName);
+	void Search(size_t typeOfSearch, string movieName);
+	void Filter(string genre = "\0", string language = "\0", int year = -1, string country = "\0", int score = -1);
+	vector<Movie> IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2);
 };
 
 
