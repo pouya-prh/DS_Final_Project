@@ -20,6 +20,7 @@ public:
 	int getYear() const;
 	float getScore() const;
 	string getCountry() const;
+	void setScore(float);
 	bool operator==(const Movie& other) const;
 	
 	void operator =(const Movie& other)
@@ -40,6 +41,7 @@ private:
 	string country;
 	int year;
 	float score;
+	vector<float> scoreAvg;
 
 
 };

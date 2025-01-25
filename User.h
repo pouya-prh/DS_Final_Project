@@ -1,5 +1,6 @@
 #pragma once
 #include "Movies.h"
+#include "ListOfInterests.h"
 class User
 {
 public:
@@ -7,12 +8,15 @@ public:
 	void search(Movies&);
 	void Filter(Movies&);
 	//void AdvancedSearch();
-	void FavoritesList();
-	void FavoritesListManagement();
-	void PrefferdMovies();
-	void Scoring();
+	void ShowFavoritesList();
+	void InsertToFavoriteList(Movies&,string);
+	void DeleteFromFavoriteList(Movies&,string);
+	void PrefferdMovies(Movies&);
+	void Scoring(Movies&, string,float);
 private:
+
+	ListOfInterests interestedList;
 	
-	// vector<Movie> favoriteList;
+	
 };
 
