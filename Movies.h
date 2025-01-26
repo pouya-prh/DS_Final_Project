@@ -86,19 +86,18 @@ class Movies
 				cache.insert(search_text);
 				return movies.get(search_text); //O(1)
 			}
-
-			/*cout << "\nSuggestions :" << endl;
-			trie.print_similar_results(search_text);
-			cout << endl;*/
-
 			return NIL;
+		}
+
+		void setScores(string movie_name, float score) {
+			movies.get(movie_name).setScore(score);
 		}
 
 		void showResults(const string& search_text) { // normal search
 			trie.print_similar_results(search_text);
 		}
 
-		void advancedSearch(const string& search_text) {
+		void advancedSearch(const string& search_text, SplayTree& genreCache) {
 			cout << "~ recently searched: " << endl;
 			showRecentlySearches();
 			cout << "\n~ similar results :" << endl;
@@ -111,6 +110,7 @@ class Movies
 				if (lev.minDistance(search_text, name) <= max(name.length(), search_text.length()) / 3) {
 					cout << name << endl;
 					cache.insert(name);
+					genreCache.insert(movies.get(name).getGenre());
 				}
 			}
 			cout << endl;
@@ -120,14 +120,15 @@ class Movies
 			cache.printNearRoot(2);
 		}
 	
-		void watch_movie(const string& search_text) {
-			if (!cache.empty())
-			{
-				cache.insert(search_text);
-				movies.get(search_text).ShowMovieInfo();
-				return;
-			}
-			cout << "Movie not found, we suggest you to search to find movie !"<<endl;
+		void watch_movie(const string& movie_name, SplayTree& genreCache) {
+			//if (!cache.empty())
+			//{
+				cache.insert(movie_name);
+				genreCache.insert(movies.get(movie_name).getGenre());
+				movies.get(movie_name).ShowMovieInfo();
+				//return;
+			//}
+			//cout << "Movie not found, we suggest you to search to find movie !"<<endl;
 		}
 	};
 
@@ -156,6 +157,7 @@ public:
 	void watch_movie(string movieName);
 	const Movie& findMovie(string movieName);
 	void Search(size_t typeOfSearch, string movieName);
+	void setScore(string, float);
 	void Filter(string genre = "\0", string language = "\0", int year = -1, string country = "\0", int score = -1);
 	vector<Movie> IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2);
 };

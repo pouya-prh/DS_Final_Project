@@ -4,14 +4,6 @@
 #include "Admin.h"
 #include "Movies.h"
 using namespace std;
-std::string trim(const std::string& str) {
-	std::string trimmed = str;
-	trimmed.erase(std::find_if(trimmed.rbegin(), trimmed.rend(), [](unsigned char ch) {
-		return !std::isspace(ch);
-		}).base(), trimmed.end());
-	return trimmed;
-}
-
 int main()
 {
 	Menu menu;
