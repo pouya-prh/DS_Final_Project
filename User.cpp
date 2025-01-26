@@ -86,22 +86,23 @@ void User::ShowFavoritesList()
 
 void User::InsertToFavoriteList(Movies& movies,string name)
 {
-    Movie movie = movies.findMovie(name);
+    const Movie& movie = movies.findMovie(name);
     if (movie == NIL)
     {
-        cout << "this movie doesnt exist!" << endl;
+        //cout << "this movie doesnt exist!" << endl;
         return;
     }
     interestedList.insert(name);
-    cout << name<<" added to favorite list succeddfully"<<endl;
+    //cout << name<<" added to favorite list successfully"<<endl;
 }
 
 void User::DeleteFromFavoriteList(Movies& movies, string name)
 {
-    Movie movie = movies.findMovie(name);
+    const Movie& movie = movies.findMovie(name);
     if (movie == NIL)
     {
-        cout << "this movie doesnt exist" << endl;
+        //cout << "this movie doesnt exist" << endl;
+        return;
     }
     interestedList.deleteMovie(name);
 }
@@ -113,13 +114,15 @@ void User::PrefferdMovies(Movies& movies)
 
 void User::Scoring(Movies& movies, string name,float score)
 {
-    Movie movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        cout << "this movie does not exist" << endl;
-        return;
-    }
-    movie.setScore(score);
+    movies.setScore(name ,score);
+    
+    //const Movie& movie = movies.findMovie(name);
+    //if (movie == NIL)
+    //{
+    //    cout << "this movie does not exist" << endl;
+    //    return;
+    //}
+    //movie.setScore(score);
 }
 
 void User::watch(Movies& movies, string name) {

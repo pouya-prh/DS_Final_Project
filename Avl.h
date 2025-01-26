@@ -126,7 +126,8 @@ private:
             }
         }
 
-        if (!root) return root;
+        if (!root)
+            return root;
 
         return balance(root);
     }
