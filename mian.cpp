@@ -62,7 +62,7 @@ int main()
 				}
 				else if (command == "show favorite list")
 				{
-					user.ShowFavoritesList();
+					user.ShowFavoritesList(movies);
 				}
 				else if (command == "show suggests")
 				{

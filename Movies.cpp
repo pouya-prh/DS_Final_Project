@@ -250,7 +250,10 @@ void Movies::showSuggest()
 {
 	if(! cache.empty()){
 		string mostRecentGanre = cache.getMostRecent();
-		allMovies.get(mostRecentGanre).inOrder();
+		auto res = allMovies.get(mostRecentGanre).inOrder();
+		for (auto item : res) {
+			cout << item.first << " : " << item.second << endl;
+		}
 	}
 }
 
@@ -275,6 +278,13 @@ const Movie& Movies::findMovie(string movieName)
 
 	}
 	return NIL;*/
+}
+
+bool Movies::exists(string movieName) {
+	if (!searchFunctions.exists(movieName))
+		return false;
+	
+	return true;
 }
 
 void Movies::Search(size_t typeOfSearch, string movieName)

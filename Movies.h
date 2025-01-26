@@ -155,6 +155,7 @@ public:
 	void ShowAllMovies();
 	void showSuggest();
 	void watch_movie(string movieName);
+	bool exists(string movieName);
 	const Movie& findMovie(string movieName);
 	void Search(size_t typeOfSearch, string movieName);
 	void setScore(string, float);
