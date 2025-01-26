@@ -113,6 +113,10 @@ int main()
 					
 					getline(cin, name);
 					cin.clear();
+					if (movies.exists(name)) {
+						cout << "this name exists before !\n" << endl;
+						continue;
+					}
 
 					cout << "Genre: ";
 					getline(cin, genre);
@@ -142,45 +146,18 @@ int main()
 				}
 				else if (command == "Delete movie")
 				{
-					//string genre;
 					string name;
-					/*string country;
-					string language;
-					string story;
-					int year;
-					float score;
-					cout << "Please complete the following questions:\n";*/
-
-					cout << "Name: ";
+					cout << "movie Name: ";
 				
 					getline(cin, name);
 					cin.clear();
+					movies.showMoviesForDelete(name);
+					
+					cout << "enter Name: ";
 				
-					/*cout << "Genre: ";
-					getline(cin, genre);
+					getline(cin, name);
 					cin.clear();
-
-					cout << "Country: ";
-					getline(cin, country);
-					cin.clear();
-
-					cout << "Language: ";
-					getline(cin, language);
-					cin.clear();
-
-					cout << "Story (brief description): ";
-					getline(cin, story);
-					cin.clear();
-
-					cout << "Year: ";
-					cin >> year;
-
-					cout << "Score (out of 10): ";///remove it later
-					cin >> score;*/
-
 					admin.RemoveMovie(movies, name);
-
-					/*cout << "Movie Deleted successfully!\n";*/
 				}
 				else if (command == "exit")
 				{
@@ -193,5 +170,3 @@ int main()
 
 	return 0;
 }
-
-

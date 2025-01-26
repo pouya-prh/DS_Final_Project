@@ -130,6 +130,16 @@ class Movies
 			//}
 			//cout << "Movie not found, we suggest you to search to find movie !"<<endl;
 		}
+
+		void applyLevenshtein(string name) {
+			vector<string> names = movies.getTable();
+			Levenshtein lev;
+			for (auto name : names) {
+				if (lev.minDistance(name, name) <= max(name.length(), name.length()) / 3) {
+					cout << name << endl;
+				}
+			}
+		}
 	};
 
 	SplayTree cache;
@@ -161,6 +171,7 @@ public:
 	void setScore(string, float);
 	void Filter(string genre = "\0", string language = "\0", int year = -1, string country = "\0", int score = -1);
 	vector<Movie> IntersectMovies( vector<Movie>& v1,  vector<Movie>& v2);
+	void showMoviesForDelete(string name);
 };
 
 

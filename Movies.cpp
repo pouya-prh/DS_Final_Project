@@ -213,7 +213,6 @@ void Movies::RemoveMovie(string name) {
 			allMovies.remove(genre, allMovies.get(genre));
 			cache.erase(genre);
 		}
-		return;
 	}
 
 	if (genres.exists(genre)) {
@@ -305,6 +304,11 @@ void Movies::Search(size_t typeOfSearch, string movieName)
 
 void Movies::setScore(string movieName, float score) {
 	searchFunctions.setScores(movieName, score);
+}
+
+void Movies::showMoviesForDelete(string name) {
+	searchFunctions.applyLevenshtein(name);
+	cout << endl;
 }
 
 void Movies::Filter(string genre, string language, int year, string country, int score)
