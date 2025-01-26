@@ -16,16 +16,12 @@ public:
 class SplayTree {
 private:
     SplayNode* root;
-
-   
     SplayNode* rightRotate(SplayNode* x);
     SplayNode* leftRotate(SplayNode* x);
-
-    
     SplayNode* splay(SplayNode* root, const string& targetKey);
-
+    size_t _size;
 public:
-    SplayTree() : root(nullptr) {}
+    SplayTree() : root(nullptr) ,_size(0){}
 
     void insert(const string& key);
    
@@ -47,6 +43,10 @@ public:
         return "";
     }
 
+    bool empty() const{
+        return _size == 0;
+    }
+
     SplayNode* find(const string& key) {
         root = splay(root, key);
         if (root && root->key == key)
@@ -61,7 +61,7 @@ public:
         root = splay(root, key);
         if (root->key != key)
             return;
-
+        _size--;
         SplayNode* temp;
         if (!root->left) {
             temp = root;

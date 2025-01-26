@@ -21,7 +21,7 @@ void SignUpAndSignIn::MakeNewAccount()
 	string password;
     cout << "Password: ";
 	cin >> password;
-    password = HashPassword(password);
+    //password = HashPassword(password);
     SaveAccountToFile(username, password);
 }
 
@@ -60,7 +60,8 @@ int SignUpAndSignIn::SignInToAccount() {
         cout << "Wellcome Admin \n";
         return 1;
     }
-    string hashedPassword = HashPassword(password);
+    //string hashedPassword = HashPassword(password);
+    string hashedPassword = password;
 
     
     ifstream inputFile("accounts.json");

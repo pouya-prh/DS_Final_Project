@@ -126,24 +126,28 @@ private:
             }
         }
 
-        if (!root) return root;
+        if (!root)
+            return root;
 
         return balance(root);
     }
 
-    void inOrder(Node<T>* node) {
-        if (!node) return;
-        inOrder(node->left);
+    void inOrder(Node<T>* node, vector<T> res) {
+        if (!node) 
+            return;
+
+        inOrder(node->left, res);
         for (const auto& val : node->values) {
+            res.push_back(val);
             /*cout << val << endl;*/
-            if constexpr (is_same<T, pair<float, string>>::value) {
+            /*if constexpr (is_same<T, pair<float, string>>::value) {
                 cout << val.first << " : " << val.second << endl;
             }
             else {
                 cout << val << endl; 
-            }
+            }*/
         }
-        inOrder(node->right);
+        inOrder(node->right, res);
     }
     
     bool areNodesEqual(Node<T>* n1, Node<T>* n2) const {
@@ -175,9 +179,12 @@ public:
         return _size;
     }
 
-    void inOrder() {
-        inOrder(root);
-        cout << endl;
+    vector<T> inOrder() {
+        vector<T> res;
+        inOrder(root, res);
+        reverse(res.begin(), res.end());
+        return res;
+        //cout << endl;
     }
 
     bool operator==(const AVLTree<T>& other) const {

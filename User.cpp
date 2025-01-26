@@ -7,12 +7,15 @@ void User::ShowMoviesInfo(Movies& movies)
 
 void User::search(Movies& movies)
 {
+    //cin.clear();
+    //cin.ignore();
+    string name;
+    cout << "What is the name of movie? ";
+    getline(cin, name);
+    cin.clear();
     cout << "Which kind of search do you want? (1.simple  2.advance)";
     size_t typeOfSearch;
     cin >> typeOfSearch;
-    string name;
-    cout << "What is the name of movie? ";
-    cin >> name;
 	movies.Search(typeOfSearch, name);
 }
 void User::Filter(Movies& movies)
@@ -76,31 +79,20 @@ void User::Filter(Movies& movies)
     movies.Filter(genre, language, date, country, score);
 }
 
-void User::ShowFavoritesList()
+void User::ShowFavoritesList(Movies& movies)
 {
-    interestedList.showList();
+    interestedList.showList(movies);
 }
 
 void User::InsertToFavoriteList(Movies& movies,string name)
 {
-    Movie movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        cout << "this movie doesnt exist!" << endl;
-        return;
-    }
-    interestedList.insert(name);
-    cout << name<<" added to favorite list succeddfully"<<endl;
+    interestedList.insert(movies, name);
+    //cout << name<<" added to favorite list successfully"<<endl;
 }
 
 void User::DeleteFromFavoriteList(Movies& movies, string name)
 {
-    Movie movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        cout << "this movie doesnt exist" << endl;
-    }
-    interestedList.deleteMovie(name);
+    interestedList.deleteMovie(movies, name);
 }
 
 void User::PrefferdMovies(Movies& movies)
@@ -110,16 +102,9 @@ void User::PrefferdMovies(Movies& movies)
 
 void User::Scoring(Movies& movies, string name,float score)
 {
-    Movie movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        cout << "this movie does not exist" << endl;
-        return;
-    }
-    movie.setScore(score);
+    movies.setScore(name ,score);
 }
 
-
-
-
-
+void User::watch(Movies& movies, string name) {
+    movies.watch_movie(name);
+}

@@ -144,11 +144,12 @@ bool Serial::operator==(const Serial& other) const {
 
 void Movies::InsertMovie(Movie& movie)
 {
-	Movie M = searchFunctions.find(movie.getName());
-	if (!(M == NIL)) {
+	if (searchFunctions.exists(movie.getName())) {
 		cout << "this movie exists before !" << endl;
 		return;
 	}
+
+	//Movie M = searchFunctions.find(movie.getName());
 
 	allMoviesVector.push_back(movie);
 
@@ -192,26 +193,27 @@ void Movies::InsertMovie(Movie& movie)
 	years.get(year).insert(name, movie);
 }
 
-void Movies::RemoveMovie(Movie& movie) {
+void Movies::RemoveMovie(string name) {
 
-	string genre = movie.getGenre();
+	if (! searchFunctions.exists(name)) {
+		cout << "this movie doesn't exist";
+		return;
+	}
+	Movie movie = searchFunctions.find(name);
 	string language = movie.getLanguage();
 	string country = movie.getCountry();
-	string name = movie.getName();
-	float score = movie.getScore();
 	int year = movie.getYear();
+	string genre = movie.getGenre();
+	float score = movie.getScore();
 
-	Movie m = searchFunctions.find(name);
-	if (!(m == NIL)) {
+	if (!(movie == NIL)) {
 		searchFunctions.deleteMovie(name);
 		allMovies.get(genre).deleteKey({ score, name });
 		if (allMovies.get(genre).size() == 0) {
 			allMovies.remove(genre, allMovies.get(genre));
 			cache.erase(genre);
 		}
-		return;
 	}
-
 
 	if (genres.exists(genre)) {
 		genres.get(genre).remove(name, movie);
@@ -232,8 +234,8 @@ void Movies::RemoveMovie(Movie& movie) {
 	if (it != allMoviesVector.end()) {
 		allMoviesVector.erase(it);
 	}
+	cout << "Movie Deleted successfully!\n";
 }
-
 
 void Movies::ShowAllMovies()
 {
@@ -245,20 +247,43 @@ void Movies::ShowAllMovies()
 
 void Movies::showSuggest()
 {
-	string mostRecentGanre = cache.getMostRecent();
-	allMovies.get(mostRecentGanre).inOrder();
+	if(! cache.empty()){
+		string mostRecentGanre = cache.getMostRecent();
+		auto res = allMovies.get(mostRecentGanre).inOrder();
+		for (auto item : res) {
+			cout << item.first << " : " << item.second << endl;
+		}
+	}
+}
+
+void Movies::watch_movie(string movieName) {
+	if(searchFunctions.exists(movieName))
+		searchFunctions.watch_movie(movieName, cache);
+	else
+		cout << "Movie not found, we suggest you to search to find movie !" << endl;
 }
 
 const Movie& Movies::findMovie(string movieName)
 {
-	Movie m = searchFunctions.find(movieName);
-	if (!(m == NIL)) {
-		if (!cache.find(m.getGenre()))
-			cache.insert(m.getGenre());
-
-		return m;
+	if (!searchFunctions.exists(movieName)) {
+		cout << "this movie doesn't exist";
+		return NIL;
 	}
-	return NIL;
+	Movie m = searchFunctions.find(movieName);
+	if (!cache.empty())
+		cache.insert(m.getGenre());
+	return m;
+	/*if (!(m == NIL)) {
+
+	}
+	return NIL;*/
+}
+
+bool Movies::exists(string movieName) {
+	if (!searchFunctions.exists(movieName))
+		return false;
+	
+	return true;
 }
 
 void Movies::Search(size_t typeOfSearch, string movieName)
@@ -269,14 +294,21 @@ void Movies::Search(size_t typeOfSearch, string movieName)
 		searchFunctions.showResults(movieName);
 		break;
 	case 2:
-		searchFunctions.advancedSearch(movieName);
-		break;
-	case 3:
+		searchFunctions.advancedSearch(movieName, cache);
 		break;
 	default:
 		cout << "invalid input" << endl;
 		break;
 	}
+}
+
+void Movies::setScore(string movieName, float score) {
+	searchFunctions.setScores(movieName, score);
+}
+
+void Movies::showMoviesForDelete(string name) {
+	searchFunctions.applyLevenshtein(name);
+	cout << endl;
 }
 
 void Movies::Filter(string genre, string language, int year, string country, int score)
