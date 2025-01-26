@@ -15,12 +15,10 @@ void Admin::AddSerial(Serials& serials, string& name, string& genre, string& sto
 
 void Admin::RemoveMovie(Movies& movies, string name)
 {
-	//Movie movie(name, genre, story, language, year, country, score);
 	movies.RemoveMovie(name);
 }
 
 void Admin::RemoveSerial(Serials&, string& name, string& genre, string& story, string& language, int& year, string& country,
 	float episodeTime, int seasonsNum, int episodesNum, float score)
-{
-}
+{}
 

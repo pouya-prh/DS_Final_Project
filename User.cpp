@@ -79,32 +79,20 @@ void User::Filter(Movies& movies)
     movies.Filter(genre, language, date, country, score);
 }
 
-void User::ShowFavoritesList()
+void User::ShowFavoritesList(Movies& movies)
 {
-    interestedList.showList();
+    interestedList.showList(movies);
 }
 
 void User::InsertToFavoriteList(Movies& movies,string name)
 {
-    const Movie& movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        //cout << "this movie doesnt exist!" << endl;
-        return;
-    }
-    interestedList.insert(name);
+    interestedList.insert(movies, name);
     //cout << name<<" added to favorite list successfully"<<endl;
 }
 
 void User::DeleteFromFavoriteList(Movies& movies, string name)
 {
-    const Movie& movie = movies.findMovie(name);
-    if (movie == NIL)
-    {
-        //cout << "this movie doesnt exist" << endl;
-        return;
-    }
-    interestedList.deleteMovie(name);
+    interestedList.deleteMovie(movies, name);
 }
 
 void User::PrefferdMovies(Movies& movies)
@@ -115,14 +103,6 @@ void User::PrefferdMovies(Movies& movies)
 void User::Scoring(Movies& movies, string name,float score)
 {
     movies.setScore(name ,score);
-    
-    //const Movie& movie = movies.findMovie(name);
-    //if (movie == NIL)
-    //{
-    //    cout << "this movie does not exist" << endl;
-    //    return;
-    //}
-    //movie.setScore(score);
 }
 
 void User::watch(Movies& movies, string name) {
